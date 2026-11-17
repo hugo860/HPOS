@@ -1,0 +1,6 @@
+HPOS
+© 2026 Hugo Miguel Marte Lora - Todos los derechos reservados.
+
+Software propietario. Los instaladores se publican para que los clientes con licencia
+(o en periodo de prueba) puedan instalar y actualizar el sistema. Queda prohibido copiar,
+modificar, descompilar, redistribuir o revender el software sin autorización escrita del autor.
