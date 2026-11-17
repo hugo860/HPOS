@@ -50,7 +50,13 @@ function HPOS-InstalarMsi($l, $cur) {
   if ($p.ExitCode -ne 0 -and $p.ExitCode -ne 3010) { throw "el instalador termino con codigo $($p.ExitCode) (registro: $log)" }
   return $estaba
 }
-function HPOS-Abrir { $e = HPOS-Exe; if ($e -and -not (Get-Process oasis-server -ErrorAction SilentlyContinue)) { Start-Process $e -WorkingDirectory (Split-Path $e) } }
+function HPOS-Abrir([switch]$Bandeja) {
+  # Despues de actualizar solo, HPOS vuelve a abrir junto al reloj (sin tapar la pantalla); el acceso directo lo trae al frente.
+  $e = HPOS-Exe
+  if ($e -and -not (Get-Process oasis-server -ErrorAction SilentlyContinue)) {
+    if ($Bandeja) { Start-Process $e -WorkingDirectory (Split-Path $e) -ArgumentList '--bandeja' } else { Start-Process $e -WorkingDirectory (Split-Path $e) }
+  }
+}
 
 function HPOS-Tarea {
   # Copia del actualizador en los datos de HPOS y tarea programada del usuario que instala (con permisos de administrador).
@@ -74,7 +80,7 @@ function HPOS-Actualizar([bool]$ya) {
   if (-not $ya -and $s.abierto -and $s.ContainsKey('auto') -and -not $s.auto) { HPOS-Estado 'apagado' "Actualizacion automatica apagada en Ajustes (hay v$($l.version))" $cur $l.version; return }
   if (-not $ya -and -not $s.ready) { HPOS-Estado 'esperando' "v$($l.version) lista; se instala cuando no haya turno abierto" $cur $l.version; return }
   try { $estaba = HPOS-InstalarMsi $l $cur } catch { HPOS-Estado 'error' "No se pudo actualizar a v$($l.version): $($_.Exception.Message)" $cur $l.version; return }
-  if ($estaba) { HPOS-Abrir }
+  if ($estaba) { HPOS-Abrir -Bandeja }
   HPOS-Estado 'actualizado' ("Actualizado a v{0}" -f (HPOS-Instalada)) (HPOS-Instalada) $l.version
 }
 
