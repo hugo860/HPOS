@@ -22,7 +22,7 @@ https://github.com/hugo860/HPOS/releases/latest/download/HPOS-android.apk
 
 **iPhone / iPad** — abre la dirección del servidor en Safari y toca *Compartir › Agregar a pantalla de inicio*.
 
-**Equipo dedicado (HPOS OS, desde USB)** — baja `HPOS-OS-amd64.iso` de la [última versión que la incluya](https://github.com/hugo860/HPOS/releases), grábala en una USB de 2 GB o más con Rufus (modo DD) o balenaEtcher, arranca la PC desde la USB y toca **Instalar**. Trae el navegador, HPOS, el modo nodo y el soporte remoto ya listos.
+**Equipo dedicado (HPOS OS, desde USB)** — baja `HPOS-OS-amd64.iso` de la [última versión que la incluya](https://github.com/hugo860/HPOS/releases), grábala en una USB de 2 GB o más con Rufus (modo DD) o balenaEtcher, arranca la PC desde la USB y toca **Instalar**. Trae HPOS en su propia ventana (sin navegador), el modo nodo y el soporte remoto ya listos; funciona en PCs de 2 GB de RAM y sin internet.
 
 ## Se actualiza solo
 Cada 2 horas el equipo revisa si hay versión nueva y la instala **solo cuando no hay un turno abierto**. Se puede apagar en *Administración › Ajustes › Actualizar solo*. Los datos del negocio nunca se tocan.
